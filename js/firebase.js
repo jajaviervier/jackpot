@@ -16,8 +16,11 @@
   //aqui van las credenciales
   console.log("FireBase!");
   let listadoMaquinas=[];
-  console.log("Listado de maquinas creado!");
+  let maquinaGanadora=0;
+  
   var rutaMaquinas = "sistema/maquinas/";
+  var rutaGanador = "sistema/ganador/";
+  console.log("Listado de maquinas creado!");
   db.ref(rutaMaquinas).orderByValue().once('value', function(datosMaquinas) {
     console.log(rutaMaquinas+"ruta inicializada")
     datosMaquinas.forEach(function(itemMaquinas) {
@@ -29,6 +32,13 @@
 
 
 
+db.ref(rutaGanador).on('value', function(datGanador) {
+
+    console.log("Maquina seleccionada para ganador"+datGanador.val().numeroMaquina);
+    let maquinaGanadora=datGanador.val().numeroMaquina;
+
+
+})
 
 
  
